@@ -8,16 +8,23 @@ import json
 
 @dataclass
 class Armor:
-    pass
+    id: int
+    name: str
+    defence: float
+    stamina_per_turn: float
 
 
 @dataclass
 class Weapon:
-    pass
+    id: int
+    name: str
+    max_damage: float
+    min_damage: float
+    stamina_per_hit: float
 
     @property
     def damage(self):
-        pass
+        return round(uniform(self.min_damage, self.max_damage), 1)
 
 
 @dataclass
