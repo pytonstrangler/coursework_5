@@ -1,8 +1,6 @@
 from dataclasses import dataclass
-from typing import List
 from random import uniform
 import marshmallow_dataclass
-import marshmallow
 import json
 
 
@@ -29,8 +27,8 @@ class Weapon:
 
 @dataclass
 class EquipmentData:
-    # TODO содержит 2 списка - с оружием и с броней
-    pass
+    weapons: list[Weapon]
+    armors: list[Armor]
 
 
 class Equipment:
@@ -40,27 +38,36 @@ class Equipment:
 
     def get_weapon(self, weapon_name) -> Weapon:
         # TODO возвращает объект оружия по имени
-        pass
+        for weapon in self.equipment.weapons:
+            if weapon.name == weapon_name:
+                return weapon
+            else:
+                return None
 
     def get_armor(self, armor_name) -> Armor:
         # TODO возвращает объект брони по имени
-        pass
+        for armor in self.equipment.armors:
+            if armor.name == armor_name:
+                return armor
+            else:
+                return None
 
     def get_weapons_names(self) -> list:
         # TODO возвращаем список с оружием
-        pass
+        return [
+            weapon.name for weapon in self.equipment.weapons
+        ]
 
     def get_armors_names(self) -> list:
         # TODO возвращаем список с броней
-        pass
+        return [
+            armor.name for armor in self.equipment.armors
+        ]
 
     @staticmethod
     def _get_equipment_data() -> EquipmentData:
         # TODO этот метод загружает json в переменную EquipmentData
-        equipment_file = open("./data/equipment.json")
-        data = json.load( ... )
-        equipment_schema = marshmallow_dataclass.class_schema( ... )
-        try:
+        with open("./data/equipment.json") as file:
+            data = json.load(file)
+            equipment_schema = marshmallow_dataclass.class_schema(EquipmentData)
             return equipment_schema().load(data)
-        except marshmallow.exceptions.ValidationError:
-            raise ValueError
