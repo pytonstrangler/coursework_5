@@ -1,5 +1,6 @@
 from unit import BaseUnit
 
+
 class BaseSingleton(type):
     _instances = {}
 
@@ -69,7 +70,6 @@ class Arena(metaclass=BaseSingleton):
         if self.game_is_running:
             self._stamina_regeneration()
             return self.enemy.hit(self.player)
-
 
     def _end_game(self):
         # TODO КНОПКА ЗАВЕРШЕНИЕ ИГРЫ - > return result: str

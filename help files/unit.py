@@ -104,9 +104,9 @@ class PlayerUnit(BaseUnit):
         damage = self._count_damage(target)
         if damage > 0:
             return (f"{self.name} используя {self.weapon.name} пробивает {target.armor.name}"
-                   f"соперника и наносит {damage} урона.")
+                    f"соперника и наносит {damage} урона.")
         return (f"{self.name} используя {self.weapon.name} наносит удар, но {target.armor.name}"
-               f"cоперника его останавливает.")
+                f"cоперника его останавливает.")
 
 
 class EnemyUnit(BaseUnit):
@@ -129,7 +129,6 @@ class EnemyUnit(BaseUnit):
         damage = self._count_damage(target)
         if damage > 0:
             return (f"{self.name} используя {self.weapon.name} пробивает {target.armor.name}"
-                   f"и наносит Вам {damage} урона.")
+                    f"и наносит Вам {damage} урона.")
         return (f"{self.name} используя {self.weapon.name} наносит удар, "
                 f"но Ваш(а) {target.armor.name} его останавливает.")
-

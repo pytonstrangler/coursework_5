@@ -17,7 +17,7 @@ heroes = {
     "enemy": ...,
 }
 
-arena = Arena() # TODO инициализируем класс арены
+arena = Arena()  # TODO инициализируем класс арены
 
 
 @app.route("/")
@@ -32,6 +32,7 @@ def start_fight():
     # TODO рендерим экран боя (шаблон fight.html)
     arena.start_game(player=heroes['player'], enemy=heroes['enemy'])
     return render_template('fights.html', heroes=heroes)
+
 
 @app.route("/fight/hit")
 def hit():
@@ -72,8 +73,6 @@ def pass_turn():
     return render_template('fights.html', heroes=heroes, result=result)
 
 
-
-
 @app.route("/fight/end-fight")
 def end_fight():
     # TODO кнопка завершить игру - переход в главное меню
@@ -111,8 +110,6 @@ def choose_hero():
         return redirect(url_for('choose_enemy'))
 
 
-
-
 @app.route("/choose-enemy/", methods=['post', 'get'])
 def choose_enemy():
     # TODO кнопка выбор соперников. 2 метода GET и POST
@@ -142,6 +139,7 @@ def choose_enemy():
         enemy.equip_weapon(Equipment().get_weapon(weapon_name))
         heroes['enemy'] = enemy
         return redirect(url_for('start_fight'))
+
 
 if __name__ == "__main__":
     app.run(port=25000)
